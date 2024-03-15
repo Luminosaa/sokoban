@@ -327,8 +327,10 @@ public class Niveau {
 		for (int i = 0; i < nbBut; i++) {
 			Point caisse = caisses[i];
 			for (int j = 0; j < 4; j++) {
+				System.out.println("test");
 				if (marques[caisse.x - directions[j][0]][caisse.y - directions[j][i]] != null
 						&& estLibre(caisse.x + directions[j][0], caisse.y + directions[j][i])) {
+					System.out.println("test2");
 					positionsFutursCaisses[i] |= (int) Math.pow(2, j);
 					System.out.println("la caisse en (" + caisse.x + ',' + caisse.y + ") peut aller en " + directions[j]);
 				}

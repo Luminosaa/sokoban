@@ -53,7 +53,9 @@ public class GenerateurCoups {
 
         Marque[][] marques = depart.getCloneMarques();
         Point[] positionsCaissesDepart = depart.getPositionCaisses();
+        System.out.println("positionsCaissesDepart: " + positionsCaissesDepart);
         Point[] positionsCaissesArrivee = arrivee.getPositionCaisses();
+        System.out.println("positionsCaissesArrivee: " + positionsCaissesArrivee);
 
         // on cherche à déterminer la position du joueur à l'arrivée en comparant les deux tableaux de positions de caisses 
         for (int i = 0; i < positionsCaissesDepart.length; i++) {
@@ -63,10 +65,14 @@ public class GenerateurCoups {
 
         Marque courant = marques[aP.x][aP.y];
 
+        listeCoups.add(new Coup(courant.casePrecedente, courant.caseCourante, aP, true));
+        dP = courant.casePrecedente;
+        aP = courant.caseCourante;
+
         while (courant.casePrecedente != null) {
             dP = courant.casePrecedente;
             aP = courant.caseCourante; 
-            listeCoups.add(new Coup(dP, aP));
+            listeCoups.add(new Coup(dP, aP));   
             courant = marques[dP.x][dP.y];
         }
 

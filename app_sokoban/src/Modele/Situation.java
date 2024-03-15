@@ -28,15 +28,19 @@ public class Situation {
         int idx = 0;
         for (int i = 0; i < positionCaisses.length; i++) {
             for (int j = 0; j < 4; j++) {
+                System.out.println(positionFuturCaisses[i]);
+                System.out.println((positionFuturCaisses[i] & (int) Math.pow(2, j)));
+
                 if ((positionFuturCaisses[i] & (int) Math.pow(2, j)) > 0) {
                     Point arriveCaisse = new Point(positionCaisses[i].x + directions[j][0],
-                            positionCaisses[i].y + directions[j][1]);
+                    positionCaisses[i].y + directions[j][1]);
                     Point departJoueur = new Point(positionCaisses[i].x - directions[j][0],
-                            positionCaisses[i].y - directions[j][1]);
+                    positionCaisses[i].y - directions[j][1]);
                     Point arriveJoueur = positionCaisses[i];
                     Coup c = new Coup(departJoueur, arriveJoueur, arriveCaisse);
                     n.jouerCoup(c, false);
                     fS[idx] = n.toSituation();
+                    System.out.println("position_caisse dans la future situation n°" + idx + fS[idx].positionCaisses);
                     idx++;
                     n.annulerDernierCoup();
                 }
