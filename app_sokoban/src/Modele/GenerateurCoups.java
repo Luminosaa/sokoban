@@ -2,47 +2,41 @@ package Modele;
 
 import java.awt.Point;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Collections;
 import java.util.Random;
+=======
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
+>>>>>>> e463c1c (improve situations)
 
 public class GenerateurCoups {
     Niveau niveau;
     
     public GenerateurCoups(Niveau n) {
-        Situation s = n.toSituation();
-        niveau = n.clone();
-        System.out.println(s);
+        //niveau = n.clone();
+        niveau = n;
     }
 
-    public ArrayList<Coup> generationCoup(int n) {
-        ArrayList<Coup> coups = new ArrayList<>();
-        Random r = new Random();
-        int i = 0;
-        while (i < n) {
-            int x, y;
-            switch (r.nextInt() % 4) {
-                case 0:
-                    x = -1;
-                    y = 0;
-                    break;
-                case 1:
-                    x = 1;
-                    y = 0;
-                    break;
-                case 2:
-                    x = 0;
-                    y = -1;
-                    break;
-                default:
-                    x = 0;
-                    y = 1;
-            }
-            if (niveau.deplace(x, y)) {
-                i++;
-                coups.add(niveau.dernierCoup());
+    public void solver() {
+        Situation s = niveau.toSituation();
+        HashMap<Situation, Boolean> situationsMap = new HashMap<>();
+        Queue<Situation> f = new LinkedList<>();
+        f.add(s);
+        while (!f.isEmpty()){
+            s = f.remove();
+            System.out.println(s);
+            if (situationsMap.get(s) == null || situationsMap.get(s) == false){
+                situationsMap.put(s, true);
+                Situation[] nextS = s.futurSituations(niveau);
+                for (int i = 0; i < nextS.length; i++){
+                    if (nextS[i] != null){
+                        f.add(nextS[i]);
+                    }
+                }
             }
         }
-        return coups;
     }
 
     public ArrayList<Coup> pathFromTo(Situation depart, Situation arrivee) {
@@ -50,6 +44,7 @@ public class GenerateurCoups {
         Point dP;
         Point aP = null;
         ArrayList<Coup> listeCoups = new ArrayList<Coup>();
+<<<<<<< HEAD
 
         Marque[][] marques = depart.getCloneMarques();
         Point[] positionsCaissesDepart = depart.getPositionCaisses();
@@ -77,6 +72,8 @@ public class GenerateurCoups {
         }
 
         Collections.reverse(listeCoups);
+=======
+>>>>>>> e463c1c (improve situations)
 
         return listeCoups;
     }
