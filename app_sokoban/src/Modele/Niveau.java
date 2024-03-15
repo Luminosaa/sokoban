@@ -342,6 +342,6 @@ public class Niveau {
 		resetMarques();
 		marqueAccessibles(pousseurL, pousseurC);
 		int[] directionsCaisses = deplacementsCaisses();
-		return new Situation(caisses, directionsCaisses);
+		return new Situation(caisses, directionsCaisses, marques);
 	}
 }

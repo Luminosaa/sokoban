@@ -6,13 +6,27 @@ import java.util.HashSet;
 public class Situation {
     HashSet<Point> positionCaisses;
     int[] positionFuturCaisses;
+    Marque[][] clone_marques;
 
-    Situation(HashSet<Point> pC, int[] pFC) {
+    Situation(HashSet<Point> pC, int[] pFC, Marque[][] m) {
         positionCaisses = new HashSet<>();
         for (Point p : pC){
             positionCaisses.add(p);
         }
         positionFuturCaisses = pFC;
+        clone_marques = m;
+    }
+
+    public HashSet<Point> getPositionCaisses() {
+        return positionCaisses;
+    }
+
+    public int[] getPositionFuturCaisses() {
+        return positionFuturCaisses;
+    }
+
+    public Marque[][] getCloneMarques() {
+        return clone_marques;
     }
 
     public Situation[] futurSituations(Niveau n) {
