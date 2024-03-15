@@ -5,24 +5,42 @@ import java.util.HashSet;
 
 public class Situation {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     Point[] positionCaisses;
 =======
     HashSet<Point> positionCaisses;
 >>>>>>> e463c1c (improve situations)
+=======
+    HashSet<Point> positionCaisses;
+=======
+
+    Point[] positionCaisses;
+>>>>>>> 96cabd5 (first try)
+>>>>>>> 0c08e7b (first try)
     int[] positionFuturCaisses;
     Marque[][] clone_marques;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     Situation(Point[] pC, int[] pFC, Marque[][] m) {
         positionCaisses = pC;
 =======
+=======
+>>>>>>> 0c08e7b (first try)
     Situation(HashSet<Point> pC, int[] pFC) {
         positionCaisses = new HashSet<>();
         for (Point p : pC){
             positionCaisses.add(p);
         }
+<<<<<<< HEAD
 >>>>>>> e463c1c (improve situations)
+=======
+=======
+    Situation(Point[] pC, int[] pFC, Marque[][] m) {
+        positionCaisses = pC;
+>>>>>>> 96cabd5 (first try)
+>>>>>>> 0c08e7b (first try)
         positionFuturCaisses = pFC;
         clone_marques = m;
     }

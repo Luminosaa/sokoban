@@ -3,6 +3,7 @@ package Modele;
 import java.awt.Point;
 import java.util.ArrayList;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.Collections;
 import java.util.Random;
 =======
@@ -10,6 +11,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 >>>>>>> e463c1c (improve situations)
+=======
+import java.util.Random;
+>>>>>>> 0c08e7b (first try)
 
 public class GenerateurCoups {
     Niveau niveau;
@@ -45,6 +49,7 @@ public class GenerateurCoups {
         Point aP = null;
         ArrayList<Coup> listeCoups = new ArrayList<Coup>();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         Marque[][] marques = depart.getCloneMarques();
         Point[] positionsCaissesDepart = depart.getPositionCaisses();
@@ -74,6 +79,9 @@ public class GenerateurCoups {
         Collections.reverse(listeCoups);
 =======
 >>>>>>> e463c1c (improve situations)
+=======
+        //if ()
+>>>>>>> 0c08e7b (first try)
 
         return listeCoups;
     }

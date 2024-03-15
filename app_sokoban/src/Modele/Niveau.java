@@ -349,6 +349,7 @@ public class Niveau {
 		resetMarques();
 		marqueAccessibles(pousseurL, pousseurC);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		Point[] caisses = positionCaisses();
 		int[] directionsCaisses = deplacementsCaisses(caisses);
 		return new Situation(caisses, directionsCaisses, marques);
@@ -356,5 +357,14 @@ public class Niveau {
 		int[] directionsCaisses = deplacementsCaisses();
 		return new Situation(caisses, directionsCaisses);
 >>>>>>> e463c1c (improve situations)
+=======
+		int[] directionsCaisses = deplacementsCaisses();
+		return new Situation(caisses, directionsCaisses);
+=======
+		Point[] caisses = positionCaisses();
+		int[] directionsCaisses = deplacementsCaisses(caisses);
+		return new Situation(caisses, directionsCaisses, marques);
+>>>>>>> 96cabd5 (first try)
+>>>>>>> 0c08e7b (first try)
 	}
 }
