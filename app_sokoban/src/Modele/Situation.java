@@ -3,12 +3,23 @@ package Modele;
 import java.awt.Point;
 
 public class Situation {
+
     Point[] positionCaisses;
     int[] positionFuturCaisses;
+    Marque[][] clone_marques;
 
-    Situation(Point[] pC, int[] pFC) {
+    Situation(Point[] pC, int[] pFC, Marque[][] m) {
         positionCaisses = pC;
         positionFuturCaisses = pFC;
+        clone_marques = m;
+    }
+
+    public Marque[][] getCloneMarques() {
+        return clone_marques;
+    }
+
+    public Point[] getPositionCaisses() {
+        return positionCaisses;
     }
 
     public Situation[] futurSituations(Niveau n) {

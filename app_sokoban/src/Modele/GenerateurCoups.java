@@ -2,6 +2,7 @@ package Modele;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class GenerateurCoups {
@@ -44,9 +45,32 @@ public class GenerateurCoups {
         return coups;
     }
 
-    public ArrayList<Coup> pathFromTo(Point dP) {
+    public ArrayList<Coup> pathFromTo(Situation depart, Situation arrivee) {
+        
+        Point dP;
+        Point aP = null;
         ArrayList<Coup> listeCoups = new ArrayList<Coup>();
-        //if ()
+
+        Marque[][] marques = depart.getCloneMarques();
+        Point[] positionsCaissesDepart = depart.getPositionCaisses();
+        Point[] positionsCaissesArrivee = arrivee.getPositionCaisses();
+
+        // on cherche à déterminer la position du joueur à l'arrivée en comparant les deux tableaux de positions de caisses 
+        for (int i = 0; i < positionsCaissesDepart.length; i++) {
+            if (positionsCaissesDepart[i].x != positionsCaissesArrivee[i].x || positionsCaissesDepart[i].y != positionsCaissesArrivee[i].y)
+                aP = positionsCaissesDepart[i];
+        }
+
+        Marque courant = marques[aP.x][aP.y];
+
+        while (courant.casePrecedente != null) {
+            dP = courant.casePrecedente;
+            aP = courant.caseCourante; 
+            listeCoups.add(new Coup(dP, aP));
+            courant = marques[dP.x][dP.y];
+        }
+
+        Collections.reverse(listeCoups);
 
         return listeCoups;
     }
