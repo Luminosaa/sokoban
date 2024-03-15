@@ -327,6 +327,7 @@ public class Niveau {
 		for (Point caisse : caisses) {
 			for (int j = 0; j < 4; j++) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				System.out.println("test");
 				if (marques[caisse.x - directions[j][0]][caisse.y - directions[j][i]] != null
 						&& estLibre(caisse.x + directions[j][0], caisse.y + directions[j][i])) {
@@ -335,6 +336,16 @@ public class Niveau {
 				if (marques[caisse.x - directions[j][0]][caisse.y - directions[j][1]] != null
 						&& estLibre(caisse.x + directions[j][0], caisse.y + directions[j][1])) {
 >>>>>>> e463c1c (improve situations)
+=======
+				if (marques[caisse.x - directions[j][0]][caisse.y - directions[j][1]] != null
+						&& estLibre(caisse.x + directions[j][0], caisse.y + directions[j][1])) {
+=======
+				System.out.println("test");
+				if (marques[caisse.x - directions[j][0]][caisse.y - directions[j][i]] != null
+						&& estLibre(caisse.x + directions[j][0], caisse.y + directions[j][i])) {
+					System.out.println("test2");
+>>>>>>> 8b3aac1 (a)
+>>>>>>> c38c789 (a)
 					positionsFutursCaisses[i] |= (int) Math.pow(2, j);
 					System.out.println("la caisse en (" + caisse.x + ',' + caisse.y + ") peut aller en "
 							+ directions[j][0] + ", " + directions[j][1]);

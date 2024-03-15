@@ -50,6 +50,7 @@ public class GenerateurCoups {
         ArrayList<Coup> listeCoups = new ArrayList<Coup>();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         Marque[][] marques = depart.getCloneMarques();
         Point[] positionsCaissesDepart = depart.getPositionCaisses();
@@ -82,6 +83,38 @@ public class GenerateurCoups {
 =======
         //if ()
 >>>>>>> 0c08e7b (first try)
+=======
+        //if ()
+=======
+
+        Marque[][] marques = depart.getCloneMarques();
+        Point[] positionsCaissesDepart = depart.getPositionCaisses();
+        System.out.println("positionsCaissesDepart: " + positionsCaissesDepart);
+        Point[] positionsCaissesArrivee = arrivee.getPositionCaisses();
+        System.out.println("positionsCaissesArrivee: " + positionsCaissesArrivee);
+
+        // on cherche à déterminer la position du joueur à l'arrivée en comparant les deux tableaux de positions de caisses 
+        for (int i = 0; i < positionsCaissesDepart.length; i++) {
+            if (positionsCaissesDepart[i].x != positionsCaissesArrivee[i].x || positionsCaissesDepart[i].y != positionsCaissesArrivee[i].y)
+                aP = positionsCaissesDepart[i];
+        }
+
+        Marque courant = marques[aP.x][aP.y];
+
+        listeCoups.add(new Coup(courant.casePrecedente, courant.caseCourante, aP, true));
+        dP = courant.casePrecedente;
+        aP = courant.caseCourante;
+
+        while (courant.casePrecedente != null) {
+            dP = courant.casePrecedente;
+            aP = courant.caseCourante; 
+            listeCoups.add(new Coup(dP, aP));   
+            courant = marques[dP.x][dP.y];
+        }
+
+        Collections.reverse(listeCoups);
+>>>>>>> 8b3aac1 (a)
+>>>>>>> c38c789 (a)
 
         return listeCoups;
     }

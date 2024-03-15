@@ -65,12 +65,15 @@ public class Situation {
 
                 if ((positionFuturCaisses[i] & (int) Math.pow(2, j)) > 0) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     Point arriveCaisse = new Point(positionCaisses[i].x + directions[j][0],
                     positionCaisses[i].y + directions[j][1]);
                     Point departJoueur = new Point(positionCaisses[i].x - directions[j][0],
                     positionCaisses[i].y - directions[j][1]);
                     Point arriveJoueur = positionCaisses[i];
 =======
+=======
+>>>>>>> c38c789 (a)
                     HashSet<Point> tmp = n.caisses;
                     n.caisses = positionCaisses;
                     Point arriveCaisse = new Point(caisse.x + directions[j][0],
@@ -78,7 +81,17 @@ public class Situation {
                     Point departJoueur = new Point(caisse.x - directions[j][0],
                             caisse.y - directions[j][1]);
                     Point arriveJoueur = caisse;
+<<<<<<< HEAD
 >>>>>>> e463c1c (improve situations)
+=======
+=======
+                    Point arriveCaisse = new Point(positionCaisses[i].x + directions[j][0],
+                    positionCaisses[i].y + directions[j][1]);
+                    Point departJoueur = new Point(positionCaisses[i].x - directions[j][0],
+                    positionCaisses[i].y - directions[j][1]);
+                    Point arriveJoueur = positionCaisses[i];
+>>>>>>> 8b3aac1 (a)
+>>>>>>> c38c789 (a)
                     Coup c = new Coup(departJoueur, arriveJoueur, arriveCaisse);
                     n.jouerCoup(c, false);
                     fS[idx] = n.toSituation();
