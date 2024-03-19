@@ -251,6 +251,10 @@ public class Niveau {
 		return pousseurC;
 	}
 
+	Marque[][] marques() {
+		return marques;
+	}
+
 	public Coup dernierCoup() {
 		return dernierCoup;
 	}
