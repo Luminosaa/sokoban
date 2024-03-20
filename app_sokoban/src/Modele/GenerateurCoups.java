@@ -12,7 +12,6 @@ public class GenerateurCoups {
     Point pousseur;
 
     public GenerateurCoups(Niveau n) {
-        // niveau = n.clone();
         niveau = n.clone();
         pousseur = new Point(niveau.pousseurL(), niveau.pousseurC());
     }
@@ -52,58 +51,45 @@ public class GenerateurCoups {
         Point aP = null;
         ArrayList<Coup> listeCoups = new ArrayList<Coup>();
 
+        // on marque les cases acessibles à partir de la position du pousseur
         niveau.marqueAccessibles(pousseur.x, pousseur.y);
         
+        // on récupère les positions des caisses à la fin et au début
         HashMap<Point, Integer> caissesDep = sitDebut.positionCaisses;
         HashMap<Point, Integer> caissesArr = sitFin.positionCaisses;
 
         // On cherche la caisse qui a bougé pour trouver la position du joueur à la fin
         for (Point p: caissesDep.keySet()) {
-            if (caissesArr.get(p) == null) {
+            if (caissesArr.get(p) == null)
                 aP = p;
-            }
         }
 
         for (Point p: caissesArr.keySet()) {
-            if (caissesDep.get(p) == null) {
+            if (caissesDep.get(p) == null)
                 dP = p;
-            }
         }
-        
-        Marque[][] marques = niveau.marques();
-
         
         // On cherche la position du joueur à la fin
-        
         int diffX = aP.x - dP.x;
         int diffY = aP.y - dP.y;
-        Marque courant = new Marque(aP, new Point(aP.x - diffX, aP.y - diffY));
-        marques[aP.x][aP.y] = courant;
-        // affichage de la matrice des marques
-        for (int i = 0; i < niveau.lignes(); i++) {
-            for (int j = 0; j < niveau.colonnes(); j++) {
-                if (marques[i][j] != null) {
-                    if (marques[i][j].caseCourante != null) {
-                        System.out.print("("+marques[i][j].caseCourante.x + "," + marques[i][j].caseCourante.y + ")");
-                    } else {
-                        System.out.print("  o  ");
-                    }
-                } else {
-                    System.out.print("  n  ");
-                }
-            }
-            System.out.println();
-        }
-        
-        System.out.println();
+        Marque courant = new Marque(aP, new Point(aP.x + diffX, aP.y + diffY));
+        niveau.marques()[aP.x][aP.y] = courant;
 
+        // on effectue un itération de la boucle while avant celle-ci
+        // pour ajouter le dernier coup (qui effectue un déplacement de caisse)
         dP = courant.casePrecedente;
+        listeCoups.add(new Coup(dP, aP, new Point(aP.x - diffX, aP.y - diffY)));
 
+        courant = niveau.marques()[dP.x][dP.y];
+        dP = courant.casePrecedente;
+        aP = courant.caseCourante;
+        
+        // on itère sur les cases précédentes pour ajouter les coups jusqu'à l'emplacement du pousseur
         while (courant.casePrecedente != null) {
             listeCoups.add(new Coup(dP, aP));
+            courant = niveau.marques()[dP.x][dP.y];
             dP = courant.casePrecedente;
             aP = courant.caseCourante;
-            courant = niveau.marques()[aP.x][aP.y];
         }
 
         Collections.reverse(listeCoups);

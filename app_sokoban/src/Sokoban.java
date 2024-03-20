@@ -21,11 +21,9 @@ class Sokoban {
 
 			// DEBUT TEST DYLAN
 			Situation s = j.niveau().toSituation();
-			Situation s2 = s.futurSituations(j.niveau())[0];
-			System.out.println("s :\n"+s);
-			System.out.println("s2 :\n"+s2);
-
 			GenerateurCoups g = new GenerateurCoups(j.niveau());
+
+			Situation s2 = s.futurSituations(j.niveau())[0];
 
 			System.out.println("ListeCoups :"+g.pathFromTo(s, s2));
 			// FIN TEST DYLAN
