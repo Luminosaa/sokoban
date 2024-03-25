@@ -21,6 +21,7 @@ public class Niveau {
 
 	private int[][] contenu;
 	private Marque[][] marques;
+	private int[][] heuristique;
 	private int l, c;
 	private String nom;
 	private int pousseurL, pousseurC;
@@ -322,6 +323,49 @@ public class Niveau {
 					int di = direction[0];
 					int dj = direction[1];
 					f.add(new Marque(new Point(i + di, j + dj), m.caseCourante));
+				}
+			}
+		}
+	}
+
+	public void genereHeuristique() {
+
+		HashMap<Point, Integer> pC = deplacementsCaisses();
+		int[][] directions = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
+		heuristique = new int[lignes()][colonnes()];
+		int i, j, k, new_i, new_j;
+		boolean ajoute;
+
+		for (i = 0; i < lignes(); i++) {
+			for (j = 0; j < colonnes(); j++) {
+				if (aBut(i, j)) {
+					heuristique[i][j] = 0;
+				} else {
+					heuristique[i][j] = Integer.MAX_VALUE;
+				}
+			}
+		}
+
+		ajoute = true;
+
+		while (ajoute) {
+			ajoute = false;
+			for (i = 0; i < lignes(); i++) {
+				for (j = 0; j < colonnes(); j++) {
+					for (k = 0; k < 4; k++) {
+						new_i = i + directions[k][0];
+						new_j = j + directions[k][1];
+						// si la case adjacente de dépasse pas de la map
+						// et que la case adjacente est accessible
+						// et qu'il est possible de pousser une caisse dessus
+						if (new_i >= 0 && new_i < lignes() && 
+							new_j >= 0 && new_j < colonnes() &&
+							heuristique[new_i][new_j] != Integer.MAX_VALUE &&
+							pC.get(new Point(new_i, new_j)) << k != 0) {
+								heuristique[i][j] = heuristique[new_i][new_j] + 1;
+								ajoute = true;
+						}
+					}
 				}
 			}
 		}
